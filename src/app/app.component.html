@@ -5,9 +5,24 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
+
+      <button class="btn btn-primary" (click)="onChangeFirst()">Change the first element</button>
+
+      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first component</button>
+
       <app-server-element *ngFor="let serverElement of serverElements"
-      [srvElement]="serverElement"></app-server-element>
+                          [name]="serverElement.name"
+                          [srvElement]="serverElement">
+
+        <!-- ng-content -->
+        <p #contentParagraph>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+
+      </app-server-element>
+
       <!-- Component which comes from this parent component, send it to the child component  -->
-    </div>
+      </div>
     </div>
   </div>
